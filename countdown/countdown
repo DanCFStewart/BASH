@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# counts down seconds remaining to given or default time
+# usage: countdown [endtime]
+beer_o_clock="18:00"
+if [ -n "$1" ];
+then
+    beer_o_clock=$1
+fi
+clear
+echo "____________________________________________________________"
+echo "|              Countdown by Dan Stewart                    |"
+echo "|     written for Evi, my favourite drinking companion     |"
+echo "|__________________________________________________________|"
+echo ""
+echo ""
+
+printf "          Beer o\'Clock is %s !!\n\n" ${beer_o_clock}
+end_time=$(date -d ${beer_o_clock} +%s)
+time_remaining=1
+while [[ ${time_remaining} -gt 0 ]];
+    do
+        now_seconds=$(date +%s)
+        time_remaining=$(($end_time - $now_seconds))
+        printf "\rYou have %d second(s) remaining until Beer o\'Clock!" ${time_remaining}
+        sleep 1
+    done
+echo ""
+echo ""
+echo "Beer o'Clock!!!!!!!!!!"
+echo "Quick, open a beer!!!!!"
+echo "WARNING!!!!!!!!!!!!!!!!"
+
+open_a_beer_in=60 # seconds
+
+
+while [[ ${open_a_beer_in} -gt -1 ]];
+    do
+        printf "\rYou have %2d second(s) remaining to open a beer and hit Ctrl+C" ${open_a_beer_in}
+        sleep 1
+        ((open_a_beer_in--))
+    done
+echo ""
+echo ""
+echo "OH NO!!!!"
+echo "TOO LATE!"
+echo "No beer for you today!"
+echo ""
+
